@@ -5,14 +5,20 @@ import group18.model.Payment;
 import group18.model.Customer;
 import group18.model.Merchant;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
 public class InMemoryStorage {
 
-    private static List<Payment> payments;
-    private static Map<String, Customer> customers; // key -> token, value -> customer
+    private static List<Payment> payments = new ArrayList<Payment>();
+
+    private static Map<String, Customer> customers = new HashMap<>(); // key -> token (or list of tokens?), value -> customer
+    private static Map<String, Merchant> merchants = new HashMap<>(); // key -> merchantId, value -> merchant
+
+    private static InMemoryStorage instance;
     /*
         Map<ArrayList<String>, Customer> customers = new HasMap<String, Customer>
         ArrayList<String> tokenList = new ArrayList<String>();
@@ -25,8 +31,6 @@ public class InMemoryStorage {
 
         customers.put(tokenList, customer );
      */
-    private static Map<String, Merchant> merchants; // key -> merchantId, value -> merchant
-    private static InMemoryStorage instance;
 
     private InMemoryStorage() {}
 
@@ -44,6 +48,14 @@ public class InMemoryStorage {
 
     public void addPaymentToStorage(Payment p) {
         payments.add(p);
+    }
+
+    public void addCustomerToStorage(String token, Customer c) {
+        customers.put(token, c);
+    }
+
+    public void addMerchantToStorage(Merchant m) {
+        merchants.put(m.getMerchantId(), m);
     }
 
     public Customer getCustomer(String token) {

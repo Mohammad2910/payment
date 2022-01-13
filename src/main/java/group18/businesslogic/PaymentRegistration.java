@@ -27,16 +27,6 @@ public class PaymentRegistration {
             - Check amount
          */
 
-        // If above is correct then
-        /*
-        try {
-            BankService dtuBank = new BankServiceService().getBankServicePort();
-            // Bank service
-            dtuBank.transferMoneyFromTo(c.getBankAccount(),m.getBankAccount(), BigDecimal.valueOf(Integer.parseInt(payment.getAmount())),"Transfer Money");
-        } catch (BankServiceException_Exception e) {
-            e.printStackTrace();
-        }
-         */
         Customer customer = inMemoryStorage.getCustomer(payment.getToken());
         Merchant merchant = inMemoryStorage.getMerchant(payment.getMerchantId());
 
