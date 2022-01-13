@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Payment {
-    // String token;
+    String token;
     String merchantId;
     String amount;
 }
