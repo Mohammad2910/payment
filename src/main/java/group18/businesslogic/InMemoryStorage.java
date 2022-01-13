@@ -30,7 +30,7 @@ public class InMemoryStorage {
 
     private InMemoryStorage() {}
 
-    public InMemoryStorage instance() {
+    public static InMemoryStorage instance() {
         if(instance == null) {
             instance = new InMemoryStorage();
             return instance;

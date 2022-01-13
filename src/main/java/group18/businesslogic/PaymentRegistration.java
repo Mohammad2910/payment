@@ -6,15 +6,17 @@ import group18.model.Customer;
 
 public class PaymentRegistration {
 
-    private final InMemoryStorage inMemoryStorage;
-    private final BankService bankService;
+    private final InMemoryStorage inMemoryStorage = InMemoryStorage.instance();
+    private final BankWrapper dtuBank;
 
-    public PaymentRegistration(InMemoryStorage inMemoryStorage, BankService bankService) {
-        this.inMemoryStorage = inMemoryStorage;
-        this.bankService = bankService;
+    public PaymentRegistration(BankWrapper dtuBank) {
+        this.dtuBank = dtuBank;
     }
 
-
+    /**
+     * @param payment
+     * @return
+     */
     public Payment createPayment(Payment payment) {
 
         // TODO different cases to create a payment
@@ -48,13 +50,20 @@ public class PaymentRegistration {
 
         //TODO here check if token is valid
 
-        bankService.transferMoneyFromTo(customerBankAccountId, merchantBankAccountId, payment.getAmount());
+        try {
+            // Transfer money
+            dtuBank.transferMoneyFromTo(customerBankAccountId, merchantBankAccountId, payment.getAmount());
+
+            // Add payment
+            inMemoryStorage.addPaymentToStorage(payment);
+        } catch (Exception e) {
+            // TODO: propagate error to user
+            System.out.println("createPayment failed");
+            System.out.println(e.getMessage());
+        }
 
         return payment;
     }
-
-
-
 }
 
 
