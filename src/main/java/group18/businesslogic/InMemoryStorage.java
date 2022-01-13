@@ -19,6 +19,7 @@ public class InMemoryStorage {
     private static Map<String, Merchant> merchants = new HashMap<>(); // key -> merchantId, value -> merchant
 
     private static InMemoryStorage instance;
+    // Test
     /*
         Map<ArrayList<String>, Customer> customers = new HasMap<String, Customer>
         ArrayList<String> tokenList = new ArrayList<String>();
