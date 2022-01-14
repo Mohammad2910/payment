@@ -14,7 +14,6 @@ public class PaymentRegistration {
     private final InMemoryStorage inMemoryStorage = InMemoryStorage.instance();
     //private final BankWrapper dtuBank;
     private final IBankWrapper bankWrapper;
-    IPaymentResource payRes = new PaymentResource();
 
     public PaymentRegistration(IBankWrapper bankWrapper) {
         this.bankWrapper = bankWrapper;
