@@ -1,4 +1,4 @@
-package group18.model;
+package group18.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

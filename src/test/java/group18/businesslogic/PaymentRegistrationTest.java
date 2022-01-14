@@ -1,9 +1,13 @@
 package group18.businesslogic;
 
 import dtu.ws.fastmoney.*;
-import group18.model.Customer;
-import group18.model.Merchant;
-import group18.model.Payment;
+import group18.adapters.BankWrapper;
+import group18.domain.InMemoryStorage;
+import group18.domain.PaymentRegistration;
+import group18.domain.model.Customer;
+import group18.domain.model.Merchant;
+import group18.domain.model.Payment;
+import group18.domain.ports.IBankWrapper;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -12,7 +16,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PaymentRegistrationTest {
-    BankWrapper bank = new BankWrapper(new BankServiceService());
+    IBankWrapper bank = new BankWrapper(new BankServiceService());
     InMemoryStorage memory = InMemoryStorage.instance();
     PaymentRegistration service = new PaymentRegistration(bank);
 

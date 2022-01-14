@@ -1,23 +1,30 @@
-package group18.businesslogic;
+package group18.domain;
 
-import group18.model.Merchant;
-import group18.model.Payment;
-import group18.model.Customer;
+import group18.adapters.BankWrapper;
+import group18.adapters.PaymentResource;
+import group18.domain.model.Merchant;
+import group18.domain.model.Payment;
+import group18.domain.model.Customer;
+import group18.domain.ports.AddPayment;
+import group18.domain.ports.IBankWrapper;
+import group18.domain.ports.IPaymentResource;
 
 public class PaymentRegistration {
 
     private final InMemoryStorage inMemoryStorage = InMemoryStorage.instance();
-    private final BankWrapper dtuBank;
+    //private final BankWrapper dtuBank;
+    private final IBankWrapper bankWrapper;
+    IPaymentResource payRes = new PaymentResource();
 
-    public PaymentRegistration(BankWrapper dtuBank) {
-        this.dtuBank = dtuBank;
+    public PaymentRegistration(IBankWrapper bankWrapper) {
+        this.bankWrapper = bankWrapper;
     }
 
     /**
      * @param payment
      * @return
      */
-    public Payment createPayment(Payment payment) {
+    public void createPayment(Payment payment) {
 
         // TODO different cases to create a payment
         /*
@@ -42,7 +49,7 @@ public class PaymentRegistration {
 
         try {
             // Transfer money
-            dtuBank.transferMoneyFromTo(customerBankAccountId, merchantBankAccountId, payment.getAmount());
+            bankWrapper.transferMoneyFromTo(customerBankAccountId, merchantBankAccountId, payment.getAmount());
 
             // Add payment
             inMemoryStorage.addPaymentToStorage(payment);
@@ -51,8 +58,6 @@ public class PaymentRegistration {
             System.out.println("createPayment failed");
             System.out.println(e.getMessage());
         }
-
-        return payment;
     }
 }
 

@@ -1,9 +1,9 @@
-package group18.businesslogic;
+package group18.domain;
 
 
-import group18.model.Payment;
-import group18.model.Customer;
-import group18.model.Merchant;
+import group18.domain.model.Payment;
+import group18.domain.model.Customer;
+import group18.domain.model.Merchant;
 
 import java.util.ArrayList;
 import java.util.HashMap;
