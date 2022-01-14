@@ -85,15 +85,12 @@ class PaymentRegistrationTest {
 
     /**
      * Runs automatically after all test inside its class
+     *
+     * Tears down all mock bank accounts created
      */
     @AfterAll
     public static void tearDown() {
         System.out.println("Running: tearDown");
-
-        // Dummy assertion
-        String dummyAccount = null;
-        assertNull(dummyAccount);
-
         BankService dtuBank = new BankServiceService().getBankServicePort();
         try {
             List<AccountInfo> list = dtuBank.getAccounts();
