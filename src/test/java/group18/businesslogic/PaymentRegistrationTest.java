@@ -8,6 +8,7 @@ import group18.domain.model.Customer;
 import group18.domain.model.Merchant;
 import group18.domain.model.Payment;
 import group18.domain.ports.IBankWrapper;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -83,10 +84,16 @@ class PaymentRegistrationTest {
     }
 
     /**
-     * Clean up DTU bank
+     * Runs automatically after all test inside its class
      */
-    @Test
-    public void cleanUpTest() {
+    @AfterAll
+    public static void tearDown() {
+        System.out.println("Running: tearDown");
+
+        // Dummy assertion
+        String dummyAccount = null;
+        assertNull(dummyAccount);
+
         BankService dtuBank = new BankServiceService().getBankServicePort();
         try {
             List<AccountInfo> list = dtuBank.getAccounts();
