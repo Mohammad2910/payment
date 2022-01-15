@@ -29,9 +29,8 @@ public class BankWrapper implements IBankWrapper {
         BigDecimal castedAmount = new BigDecimal(amount);
         try {
             bank.transferMoneyFromTo(customerBankAccount, merchantBankAccount, castedAmount, "Payment Description.");
-        } catch (BankServiceException_Exception e) {
-            // TODO: Throw custom exception
-            throw new Exception(e.getMessage());
+        } catch (TransferFailedException e) {
+            throw new TransferFailedException("Transfer from " + customerBankAccount + " to " + merchantBankAccount + " failed!" , e.getCause(), e.getFaultInfo());
         }
     }
 }
