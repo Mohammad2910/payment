@@ -1,13 +1,9 @@
 package group18.domain;
 
-import group18.adapters.BankWrapper;
-import group18.adapters.PaymentResource;
 import group18.domain.model.Merchant;
 import group18.domain.model.Payment;
 import group18.domain.model.Customer;
-import group18.domain.ports.AddPayment;
 import group18.domain.ports.IBankWrapper;
-import group18.domain.ports.IPaymentResource;
 
 public class PaymentRegistration {
 
