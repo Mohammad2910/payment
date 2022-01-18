@@ -14,7 +14,6 @@ import group18.payment.utilities.messaging.impl.RabbitMqQueue;
 public class StartUp {
 
     public static void main(String[] args) {
-        new StartUp().startUp();
     }
 
     private void startUp() {

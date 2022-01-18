@@ -100,8 +100,6 @@
           <sourceDestDir>src/main/java</sourceDestDir>
         </configuration>
       </plugin>
-
-
       <plugin>
         <groupId>${quarkus.platform.group-id}</groupId>
         <artifactId>quarkus-maven-plugin</artifactId>
