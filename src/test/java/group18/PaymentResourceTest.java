@@ -4,7 +4,7 @@ import dtu.ws.fastmoney.BankService;
 import dtu.ws.fastmoney.BankServiceService;
 import group18.payment.adapters.bankTransfer.BankTransferService;
 import group18.payment.adapters.bankTransfer.impl.WsBankTransferService;
-import group18.payment.adapters.payment.PaymentPayload;
+import group18.payment.adapters.payment.model.PaymentPayload;
 import group18.payment.adapters.payment.PaymentResource;
 import group18.payment.domain.PaymentService;
 import group18.payment.domain.cache.PaymentsCache;

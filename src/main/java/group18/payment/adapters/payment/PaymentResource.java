@@ -1,6 +1,7 @@
 package group18.payment.adapters.payment;
 
 
+import group18.payment.adapters.payment.model.PaymentPayload;
 import group18.payment.domain.PaymentService;
 import group18.payment.domain.model.Payment;
 import group18.payment.utilities.messaging.Event;
@@ -27,7 +28,7 @@ public class PaymentResource {
         String requestId = ev.getArgument(0, String.class);
         try {
            PaymentPayload p = ev.getArgument(1, PaymentPayload.class);
-           if (p.merchantId == null || p.token == null || p.amount == null) {
+           if (p.getMerchantId() == null || p.getToken() == null || p.getAmount() == null) {
                sendErrorResponse(requestId, "parameters can not be null");
                return;
            }
@@ -47,7 +48,7 @@ public class PaymentResource {
                 return;
             }
             PaymentPayload p = ev.getArgument(1, PaymentPayload.class);
-            Payment payment = new Payment(p.merchantBankAccountId, p.customerBankAccount, p.amount, requestId);
+            Payment payment = new Payment(p.getMerchantBankAccountId(), p.getCustomerBankAccountId(), p.getAmount(), requestId);
             paymentService.transferMoney(payment);
             Event event = new Event(PAYMENT_RESPONSE_PROVIDED, new Object[]{requestId});
             queue.publish(event);
